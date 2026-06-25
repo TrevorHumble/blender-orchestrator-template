@@ -55,7 +55,7 @@ That's it. Before your first build, open **[CLAUDE.md](CLAUDE.md)** and fill in 
 
 **Doc stubs you fill in** — `CLAUDE.md` (operating rules + your North Star), `DESIGN.md`, `PLAN.md`, `BUILDLOG.md`.
 
-**A worked example** — `addons/` ships two small Blender add-ons with full tests so CI is green the moment you clone. Delete them (and their `tests/`/`evals/`) when you start your own work; they're there to prove the whole pipeline runs end-to-end.
+**A worked example** — `addons/` ships two small Blender add-ons with full tests so CI is green the moment you clone. When you start your own work, retire them with one command — `powershell -File tools/retire-example.ps1` (preview; add `-Yes` to remove). They're there to prove the whole pipeline runs end-to-end on a fresh clone.
 
 ---
 
