@@ -30,4 +30,11 @@ $obj = [ordered]@{
   ts        = (Get-Date -Format o)
 }
 [IO.File]::WriteAllText((Join-Path $dir 'verdict.json'), ($obj | ConvertTo-Json -Compress))
+
+# Append to a gitignored history log so the discretionary pipeline can be audited
+# later (reviewer counts over time) -- groundwork for the self-audit (issue #15).
+# Isolated and fail-safe: it runs AFTER the verdict.json the gate reads (unchanged
+# above) and swallows any error, so it can never affect commit-gate behavior.
+try { Add-Content -Path (Join-Path $dir 'verdict-history.jsonl') -Value ($obj | ConvertTo-Json -Compress) -Encoding utf8 } catch { }
+
 Write-Output "verdict $Verdict recorded for tree $($tree.Substring(0,12)) ($($obj.reviewers.Count) reviewer(s))"
