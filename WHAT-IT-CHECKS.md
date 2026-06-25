@@ -8,7 +8,7 @@ Plain-language guide for the owner who can't read the code. This explains what a
 
 When the checks pass (the green checkmark on a build), these things have been confirmed for you, automatically, without anyone reading the code:
 
-- **Every change was reviewed before it landed.** Independent AI reviewers — whose job is to find fault, not approve — checked the change against what it was supposed to do, and a gate (the "commit gate") blocks anything from being committed without a recorded passing review. So no code reaches your project unreviewed.
+- **Every change goes through adversarial review before it lands.** AI reviewers — whose job is to find fault, not approve — check the change against what it was supposed to do, and a gate (the "commit gate") blocks any commit that doesn't have a recorded passing review bound to exactly that code. So unreviewed code can't slip in. *(One honest limit, so you know what the green light does and doesn't promise: today the gate proves a passing review was recorded for the code, not yet that the review couldn't be shortcut. Closing that — having the reviewers produce the verdict in code rather than by hand — is tracked in the repo's issues.)*
 
 - **The core logic is verified against the right answers.** Your project's core logic is checked against the correct results worked out independently. Not "the code ran" — the actual values it produces are the values they should be.
 
