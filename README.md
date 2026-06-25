@@ -29,6 +29,8 @@ powershell -ExecutionPolicy Bypass -File setup.ps1
 #    /build a tool that <does the thing you want>
 ```
 
+You can't forget enforcement: **opening the folder in Claude Code arms the commit gate automatically** the first time you open it and accept the workspace-trust prompt. Running `setup.ps1` (step 2) is still recommended — it *also* sets your git identity and confirms every gate up front, and it works from a plain terminal — but the gate won't be left off if you skip it.
+
 That's it. Before your first build, open **[CLAUDE.md](CLAUDE.md)** and fill in your **North Star** (one sentence: who it's for and what it builds) — every decision the agent makes flows from it.
 
 **Want to be sure you're protected?** Run `powershell -File tools/check-enforcement.ps1` anytime — it tells you, in plain words, which gates are on.

@@ -12,7 +12,7 @@ $hp = "$(& git config --get core.hooksPath)".Trim()
 if (($hp -eq '.githooks') -and (Test-Path '.githooks/pre-commit')) {
   Write-Host "[ON]  Commit gate - no commit lands without a passing review." -ForegroundColor Green
 } else {
-  Write-Host "[OFF] Commit gate - not active. Run setup.ps1." -ForegroundColor Red; $ok = $false
+  Write-Host "[OFF] Commit gate - not active. Reopen in Claude Code, or run setup.ps1." -ForegroundColor Red; $ok = $false
 }
 
 # 2 & 3. Goal + loop gates — wired in settings; load when Claude Code opens the folder.
@@ -34,6 +34,6 @@ if ($ok) {
   Write-Host "You're protected. The goal & loop gates go live once you open this folder in Claude Code and accept its trust prompt." -ForegroundColor Green
   exit 0
 } else {
-  Write-Host "Something above is OFF - run:  powershell -ExecutionPolicy Bypass -File setup.ps1" -ForegroundColor Yellow
+  Write-Host "Something above is OFF - reopen this folder in Claude Code (arms the commit gate), or run:  powershell -ExecutionPolicy Bypass -File setup.ps1" -ForegroundColor Yellow
   exit 1
 }
