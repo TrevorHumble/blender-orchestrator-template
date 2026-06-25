@@ -45,6 +45,7 @@ One token verdict (`PASS` or `FAIL`) followed by the numbered defect list. A PAS
 
 - [ ] User story names an end-consumer and follows `As a [consumer], I need…` form.
 - [ ] Every acceptance criterion is in Given/When/Then form and resolves to a literal string or structural check.
+- [ ] At least one acceptance criterion asserts a behavioral output value (input → expected output), not only that a file/section/string exists — an issue whose ACs are all presence-checks cannot catch a wrong implementation, that is a major. (Exempt documentation-only issues — those whose `Touches` paths are all docs, `.md` or under `docs/` — whose ACs may be purely string/structural per `standards/issue-standards.md`.)
 - [ ] Implementation plan is present with at least three numbered steps, each naming a file path or concrete deliverable.
 - [ ] Dependency map contains all three fields: `Depends on`, `Blocks`, `Touches`.
 - [ ] No FINAL, LAST, or TRULY_FINAL in filenames or section headers referenced by this issue.
