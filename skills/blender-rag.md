@@ -14,6 +14,8 @@ Full skill: `C:\Users\thumb\.claude\skills\blender-rag\SKILL.md` — read it.
 RAG corpus: `C:\Users\thumb\BlenderRag`
 MCP tool: `search_blender_docs`
 
+> Requires a local Blender RAG/MCP setup; skip if not using Blender. The paths above are the original author's machine — adapt them to your own install.
+
 ## The one rule that matters here
 
 **Confirm the API via the RAG, then execute via blender-connect.**

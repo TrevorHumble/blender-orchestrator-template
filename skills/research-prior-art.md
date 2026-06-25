@@ -21,7 +21,7 @@ Delegate to `agents/researcher.md`. Do not improvise the research inline.
 ## Search order (researcher must follow this)
 
 1. Local repo (`skills/`, `agents/`, `standards/`, `issues/`, `references/`) — glob and grep first.
-2. Blender RAG at `C:\Users\thumb\BlenderRag` via `search_blender_docs` (if Blender-relevant).
+2. Blender RAG at `C:\Users\thumb\BlenderRag` via `search_blender_docs` (if Blender-relevant; requires a local Blender RAG/MCP setup, skip if not using Blender — path is the original author's machine, adapt to your own install).
 3. Web search — only after local + RAG are exhausted or clearly insufficient.
 
 ## Time box

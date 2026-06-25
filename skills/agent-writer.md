@@ -8,7 +8,7 @@ description: >
 
 # Authoring an agent
 
-**Standard:** `C:\Users\thumb\blender-orchestrator\standards\agent-standards.md` — read it before writing; do not restate it here. It defines single-responsibility, least-privilege tools, I/O contract requirements, model-tier selection, reviewer-bias rules, and the reviewer checklist.
+**Standard:** `standards/agent-standards.md` — read it before writing; do not restate it here. It defines single-responsibility, least-privilege tools, I/O contract requirements, model-tier selection, reviewer-bias rules, and the reviewer checklist.
 
 ## Procedure
 

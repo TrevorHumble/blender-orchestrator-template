@@ -1,32 +1,43 @@
 ---
 name: update-claude-md
 description: >-
-  What to update in CLAUDE.md after project state changes. Triggers: "after
-  creating an issue", "after merging a PR", "update the project doc", "record
-  this in CLAUDE.md", any task that changes issue or PR state in
-  blender-orchestrator.
+  What to refresh in CLAUDE.md after project state changes. Triggers: "after
+  creating an issue", "after committing to main", "update the project doc",
+  "record this in CLAUDE.md", any task that adds or changes an agent, skill,
+  standard, or convention.
 ---
 
 # update-claude-md
 
-Two triggers — both require a CLAUDE.md update:
+CLAUDE.md is the orchestrator's operating doc. It carries the project's rosters
+(the `agents/`, `skills/`, `standards/` inventories under "Where things live")
+and its conventions — not a task list. **Issue status lives on the GitHub board,
+not in CLAUDE.md**; the board is the single source of truth for state, so there
+is no issue table to maintain here.
 
-1. **After every issue created** — add a row to the issue table (number, title,
-   status `open`, depends-on, blocks).
-2. **After every PR merged** — update the affected issue rows to `closed` and
-   note the merged PR number.
+## What to refresh
+
+After an issue is committed to `main`, check whether the change altered anything
+CLAUDE.md describes, and bring it current in the same pass:
+
+1. **Rosters** — if the commit added, removed, or renamed an agent, skill, or
+   standard, update the matching list under "Where things live" (one terse line:
+   filename + one-line purpose, matching the existing entries).
+2. **Conventions / policy** — if it changed a convention, a model-policy rule, a
+   pipeline step, or an authoritative-source pointer, edit that line so the doc
+   matches how the system now behaves.
+
+Touch nothing that did not change. Keep every entry terse — a filename and a
+one-line purpose, no prose summaries. Match the surrounding format.
 
 ## Where
 
-`C:\Users\thumb\blender-orchestrator\CLAUDE.md` — the project-level doc.
-Do not touch `C:\Users\thumb\.claude\CLAUDE.md` (global user config).
-
-## What to write
-
-Keep entries terse: issue number, one-line title, current status, dependency
-chain. No prose summaries. Match the existing table format already in the file.
+The repo-root `CLAUDE.md` — the project-level operating doc. Do **not** touch the
+global user config at `~/.claude/CLAUDE.md`.
 
 ## When NOT to update
 
-Do not update CLAUDE.md for draft issues that haven't been created yet, or for
-PRs that are open but not merged. State changes only.
+- Draft issues not yet created, or commits not yet on `main` — state changes only.
+- A change that touches no roster entry, convention, or policy line. A stale
+  roster degrades every later decision, but inventing entries for nothing degrades
+  it just as much.

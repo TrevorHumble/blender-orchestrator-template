@@ -8,7 +8,7 @@ description: >
 
 # Drafting an issue
 
-**Standard:** `C:\Users\thumb\blender-orchestrator\standards\issue-standards.md` — read it; do not restate it here.
+**Standard:** `standards/issue-standards.md` — read it; do not restate it here.
 
 ## Required sections
 

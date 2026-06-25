@@ -6,24 +6,34 @@ No human reads code in the critical path. Reviewer agents are the gate. Three ho
 
 ---
 
+## Before you start
+
+You need these installed once (all free):
+- **GitHub CLI** — [cli.github.com](https://cli.github.com). Sign in with `gh auth login`.
+- **Claude Code** — the AI that does the building.
+- **Python 3** — the safety checks run on it.
+- **Windows + PowerShell** — the hooks and setup are written in PowerShell (this template targets Windows).
+
 ## Start a new project (3 steps)
 
 ```powershell
-# 1. Make your own repo from this template (clones it down for you)
+# 1. Make your own repo from this template (creates it on GitHub + clones it here).
+#    --public lets the free CodeQL security scan run; use --private to skip only that.
 gh repo create my-project --template TrevorHumble/blender-orchestrator-template --public --clone
 cd my-project
 
-# 2. Turn on enforcement (once)
+# 2. Turn on enforcement (once).
 powershell -ExecutionPolicy Bypass -File setup.ps1
 
-# 3. Open the folder in Claude Code and tell it what to build.
+# 3. Open the folder in Claude Code, accept the trust prompt, then type your goal:
+#    /build a tool that <does the thing you want>
 ```
 
-That's it. Before your first build, open **[CLAUDE.md](CLAUDE.md)** and fill in your **North Star** (what you're building and why) — every decision the agent makes flows from it.
+That's it. Before your first build, open **[CLAUDE.md](CLAUDE.md)** and fill in your **North Star** (one sentence: who it's for and what it builds) — every decision the agent makes flows from it.
 
-> **Public vs private:** the commands above make a **public** repo, because GitHub's free CodeQL security scan only runs on public repos under GitHub Pro. If you'd rather keep it private, swap `--public` for `--private` — everything still works *except* CodeQL (the tests, the commit gate, and Dependabot are unaffected).
->
-> **If a hook doesn't seem to fire:** close and reopen the folder in Claude Code once — hooks load at session start.
+**Want to be sure you're protected?** Run `powershell -File tools/check-enforcement.ps1` anytime — it tells you, in plain words, which gates are on.
+
+> **If a hook doesn't seem to fire:** close and reopen the folder in Claude Code once — the goal and loop gates load when the session starts and you accept the workspace-trust prompt.
 
 ---
 
@@ -34,7 +44,7 @@ That's it. Before your first build, open **[CLAUDE.md](CLAUDE.md)** and fill in 
 | Hook | What it forces | Lives in |
 |---|---|---|
 | **Commit gate** | No commit lands unless a review verdict says PASS for exactly that code. | `.githooks/pre-commit` |
-| **Goal gate** | The agent can't punt a question to you that your goals already answer. | `.claude/hooks/goal-gate.ps1` |
+| **Goal gate** | Blocks the agent's *ask-a-question* tool, so it decides from your goals instead of stalling on you. | `.claude/hooks/goal-gate.ps1` |
 | **Loop gate** | A timed autonomous run can't quit early — it works the full budget. | `.claude/hooks/loop-gate.ps1` |
 
 **The build pipeline** — `issue → review → implement → review → commit`, driven by the orchestrator (`agents/orchestrator.md`), gated by adversarial reviewer agents (`agents/reviewer-*.md`). System-level changes need two independent reviewers.

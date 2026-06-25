@@ -9,7 +9,7 @@ $hp = "$(& git config --get core.hooksPath)".Trim()
 $hook = Join-Path $top '.githooks/pre-commit'
 $hookOk = Test-Path $hook
 if ($hp -ne '.githooks' -or -not $hookOk) {
-  Write-Error "check-gate: commit gate NOT active (core.hooksPath='$hp', pre-commit present=$hookOk). Run: powershell -File tools/setup-hooks.ps1"
+  Write-Error "check-gate: commit gate NOT active (core.hooksPath='$hp', pre-commit present=$hookOk). Run: powershell -File setup.ps1"
   exit 1
 }
 Write-Output 'commit gate ACTIVE (core.hooksPath=.githooks, .githooks/pre-commit present)'

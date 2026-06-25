@@ -8,7 +8,7 @@ description: >
 
 # Spawning an adversarial reviewer
 
-**Protocol:** `C:\Users\thumb\blender-orchestrator\standards\adversarial-review-protocol.md` — read it in full before spawning any reviewer.
+**Protocol:** `standards/adversarial-review-protocol.md` — read it in full before spawning any reviewer.
 
 ## De-bias rules (required; no exceptions)
 

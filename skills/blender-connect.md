@@ -10,11 +10,11 @@ description: >-
 
 # blender-connect (orchestrator wrapper)
 
-Full skill: `C:\Users\thumb\.claude\skills\blender-mcp\SKILL.md` — read it.
+Full skill: `C:\Users\thumb\.claude\skills\blender-mcp\SKILL.md` — read it. (Requires a local Blender RAG/MCP setup; skip if not using Blender. Path is the original author's machine — adapt to your own install.)
 
 That skill is required reading before any live Blender control — load it.
 
 ## Before running any `execute_blender_code`
 
-Confirm the API with blender-rag first (`C:\Users\thumb\blender-orchestrator\skills\blender-rag.md`).
+Confirm the API with blender-rag first (`skills/blender-rag.md`).
 Then execute here. Confirm, then execute — that order is the whole point.

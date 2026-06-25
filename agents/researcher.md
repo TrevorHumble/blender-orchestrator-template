@@ -37,7 +37,7 @@ You run a time-boxed prior-art and topic check. You do not build anything. You d
 ## Search order
 
 1. **Local repo first.** Glob and Grep the provided paths. Read candidates. Do not skip this step.
-2. **Blender RAG second** (if Blender-relevant). Call `search_blender_docs` with the topic. Use `source_type='api'` for bpy symbols; `source_type='manual'` for how-to questions. RAG is at `C:\Users\thumb\BlenderRag`.
+2. **Blender RAG second** (if Blender-relevant). Call `search_blender_docs` with the topic. Use `source_type='api'` for bpy symbols; `source_type='manual'` for how-to questions. RAG is at `C:\Users\thumb\BlenderRag` (requires a local Blender RAG/MCP setup; skip if not using Blender — path is the original author's machine, adapt to your own install).
 3. **Web last.** Only after local and RAG are exhausted or clearly insufficient. Use `WebSearch` then `WebFetch` for sources that look relevant.
 
 ## Time box

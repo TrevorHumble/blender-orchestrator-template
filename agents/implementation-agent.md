@@ -38,7 +38,8 @@ skill, or agent artifacts. It is never used to commit or self-approve.
 1. **Read the issue fully** before writing a single line. Satisfy every acceptance criterion.
 2. **Blender RAG first.** Before writing any `bpy` code or referencing any Blender operator,
    node, or API symbol, call `search_blender_docs` (the Blender RAG at
-   `C:\Users\thumb\BlenderRag`) to confirm the API signature and version-specific behavior.
+   `C:\Users\thumb\BlenderRag` — requires a local Blender RAG/MCP setup; skip if not using
+   Blender, and adapt the path to your own install) to confirm the API signature and version-specific behavior.
    Do not rely on memory for `bpy` API details.
 3. **Consume prior art.** Read every file path supplied in the handoff. Steal what applies;
    do not reinvent.

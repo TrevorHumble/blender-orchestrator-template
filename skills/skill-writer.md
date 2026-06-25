@@ -8,7 +8,7 @@ description: >
 
 # Authoring a skill
 
-**Standard:** `C:\Users\thumb\blender-orchestrator\standards\skill-standards.md` — read it before writing; do not restate it here. It defines anti-bloat rules, the description/trigger contract, progressive-disclosure limits, and the reviewer checklist.
+**Standard:** `standards/skill-standards.md` — read it before writing; do not restate it here. It defines anti-bloat rules, the description/trigger contract, progressive-disclosure limits, and the reviewer checklist.
 
 ## Intent-not-words discipline
 

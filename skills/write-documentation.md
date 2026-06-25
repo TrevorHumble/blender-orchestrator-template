@@ -8,7 +8,7 @@ description: >
 
 # Writing a doc
 
-**Standard:** `C:\Users\thumb\blender-orchestrator\standards\documentation-standards.md` — read it; do not restate it here.
+**Standard:** `standards/documentation-standards.md` — read it; do not restate it here.
 
 ## Consumer POV
 

@@ -124,7 +124,7 @@ because a queue emptied or the work "felt done." Full procedure and live state: 
   now, but re-verify and research a workaround in the Cascade. Pre-solved roadblocks are verified by running,
   not asserted.
 - **Decide from the goals; do not punt.** Before surfacing ANY decision, run it through the goals
-  (`README.md#the-goal-this-year`) and constraints. If the goals, CLAUDE.md, or an explicit instruction
+  (the North Star in `CLAUDE.md`) and constraints. If the goals, CLAUDE.md, or an explicit instruction
   settle it — or it is a technical/implementation tradeoff — decide it and act; do NOT ask. Never ask
   permission to continue authorized work. A question answerable by re-reading the goals is not a question for
   the owner. When unsure whether the goals decide it, spawn a consultant to *derive* the goal-aligned answer —
@@ -189,7 +189,7 @@ These gates are additive to the existing `reviewer-issue` / `reviewer-pr` pipeli
 
 **Design-philosophy gate (PR-review time):** An implementation artifact is code, an agent spec, a skill, or a standard. A doc-only or typo-only change is NOT an implementation artifact and skips this gate. Spawn `agents/reviewer-design-philosophy.md` (Opus) for every implementation artifact at PR-review time, after `reviewer-pr` returns PASS. A FAIL is fixed and re-reviewed; it is never overridden.
 
-**Periodic full-system architectural audit:** Starting from the first BUILDLOG entry after #0016 merges, count each committed-issue entry appended to `BUILDLOG.md` (one entry is appended per merge; audit entries, which are prefixed `[AUDIT]`, are not counted). On every 5th counted entry, run a `full-system architectural audit` over `DESIGN.md` and the `agents/`, `skills/`, and `standards/` inventory, and append the outcome as an `[AUDIT]`-prefixed BUILDLOG line (excluded from the count).
+**Periodic full-system architectural audit:** Starting from the first committed BUILDLOG entry in this repo, count each committed-issue entry appended to `BUILDLOG.md` (one entry is appended per merge; audit entries, which are prefixed `[AUDIT]`, are not counted). On every 5th counted entry, run a `full-system architectural audit` over `DESIGN.md` and the `agents/`, `skills/`, and `standards/` inventory, and append the outcome as an `[AUDIT]`-prefixed BUILDLOG line (excluded from the count).
 
 ---
 
