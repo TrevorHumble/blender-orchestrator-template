@@ -36,8 +36,7 @@ standards/
 addons/                            — example add-ons that prove the pipeline end-to-end (delete when starting your own work)
 tests/                             — dependency-free headless test harness (run_pure.py, run_headless.py, run_tests.ps1)
 evals/                             — deterministic + Claude-as-judge eval harness (cases.py, run_evals.py, judge.md)
-issues/
-config/                            — repo-level config (github.txt holds the remote URL)
+issues/                            — issue files (NNNN-*.md); the GitHub board owns their status
 .github/workflows/ci.yml           — CI pipeline; runs on every push and PR
 .claude/commands/build.md          — /build slash command that triggers a pipeline run
 .claude/settings.json              — Claude Code settings
@@ -367,7 +366,7 @@ The harness is dependency-free — no pytest, no pip install. Tests are split by
 ## Setup items
 
 <!-- CUSTOMIZE: fill these in when you stand up your project. -->
-- Repo name and URL — record the remote in `config/github.txt`.
+- Repo name and URL — set automatically when you create the repo from the template (`git remote -v` shows it); no separate file needed.
 - License — choose one before publishing (MIT is a reasonable default for an open template).
 - How a run is triggered — the `/build` slash command at `.claude/commands/build.md`.
 
