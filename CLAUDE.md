@@ -24,7 +24,7 @@ This system exists for one person and one aim: **a creator who can't (or doesn't
 
 On a freshly-cloned project, before the first feature:
 1. **North Star** — if the `<!-- CUSTOMIZE -->` markers above are unfilled, help the owner write the North Star (one sentence: who it's for and what it builds), then carry it into `DESIGN.md` and `PLAN.md` (their CUSTOMIZE markers).
-2. **The example** — `addons/`, `tests/`, `evals/` ship a worked Blender example so CI is green on clone. When the owner's real work begins (especially in another domain), delete them; CI auto-skips the example steps (`.github/workflows/ci.yml` guards them with `hashFiles('addons/*.py')`), and you then add the project's own test/lint steps.
+2. **The example** — `addons/`, `tests/`, `evals/` ship a worked Blender example so CI is green on clone. When the owner's real work begins (especially in another domain), retire it with `powershell -File tools/retire-example.ps1` (preview; add `-Yes` to remove + stage). CI auto-skips the example steps once it's gone (`.github/workflows/ci.yml` guards them with `hashFiles('addons/*.py')`); you then add the project's own test/lint steps.
 3. **Confirm enforcement** — run `powershell -File tools/check-gate.ps1` before the first commit (the gate self-arms when the folder is opened in Claude Code, but verify rather than assume).
 
 Then proceed through the normal Pipeline below.
