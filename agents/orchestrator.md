@@ -46,7 +46,7 @@ allowed rounds.
    Then **close the GitHub issue** for this work (`gh issue close`, referencing the commit) so the board
    matches reality. Before declaring the segment done, spawn `agents/reviewer-tracker-sync.md` — it FAILs
    if the board is out of sync with the issue files / BUILDLOG. The board is kept current at every
-   transition: issue created → `gh issue` opened; PR merged/committed → `gh issue` closed.
+   transition: issue created → `gh issue` opened; committed to `main` → `gh issue` closed.
    - **Believe the green light — watch CI to green after every push.** This is a direct-push model:
      the orchestrator commits straight to `main` and is the only committer; there is no human merge
      approval (by design — the owner never pushes code). So the green light is made trustworthy by the
@@ -158,7 +158,7 @@ because a queue emptied or the work "felt done." Full procedure and live state: 
   rounds triggers the orchestrator to halt and surface to the operator. The severity
   adjudicator only classifies severity per invocation; it cannot track elapsed rounds.
   Log the halt in `BUILDLOG.md` and continue with independent segments. a halt is not an
-  acceptance — the work is not merged.
+  acceptance — the work is not committed.
 
 ---
 

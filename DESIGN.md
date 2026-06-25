@@ -58,11 +58,11 @@ Names only. This document describes the structure; it does not create or modify 
 - `github-write` — create issues, branches, PRs, and commits
 - `issue-create` — draft and file issues through the issue lifecycle
 - `spawn-adversarial-review` — spawn a reviewer agent with minimum context
-- `skill-writer` — write or update a skill file through the PR pipeline
-- `agent-writer` — write or update an agent file through the PR pipeline
+- `skill-writer` — write or update a skill file through the review pipeline
+- `agent-writer` — write or update an agent file through the review pipeline
 - `update-claude-md` — update CLAUDE.md after issues and PRs
 - `research-prior-art` — time-boxed prior-art lookup before drafting
-- `write-documentation` — write or update documentation through the PR pipeline
+- `write-documentation` — write or update documentation through the review pipeline
 - `capture-system-defect` — file a defect found in the repo's own machinery as an issue and route it through the pipeline
 
 ### Agent roster
@@ -287,7 +287,7 @@ When public-facing behavior changes, update the README in the same PR. When oper
 
 **The failure mode.** When updating a skill from feedback, the model over-indexes on the user's literal words, appends them verbatim, and bloats a tight skill into long, unfocused mush. The original intent is diluted. The skill becomes harder to invoke and harder to review.
 
-**The discipline.** Treat feedback as a symptom report. Diagnose the root cause of the symptom, make the smallest edit that fixes it, and default to subtraction over addition. Never paste the user's sentence into the skill. Re-review the skill after every update, using reviewer-skill through the standard PR pipeline.
+**The discipline.** Treat feedback as a symptom report. Diagnose the root cause of the symptom, make the smallest edit that fixes it, and default to subtraction over addition. Never paste the user's sentence into the skill. Re-review the skill after every update, using reviewer-skill through the standard review pipeline.
 
 ## Deferred items
 

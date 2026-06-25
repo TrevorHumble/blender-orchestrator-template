@@ -159,5 +159,5 @@ until either a reviewer returns PASS or the severity adjudicator authorizes exit
 **Impasse:** A consequential defect that survives the severity gate plus 3 further fix-and-re-review rounds
 is declared an impasse. The orchestrator tracks the post-gate round count and declares the impasse; the
 severity adjudicator only classifies severity per invocation and cannot track elapsed rounds. The segment
-halts and surfaces to the operator; a halt is not an acceptance — the work is not merged. This bound
+halts and surfaces to the operator; a halt is not an acceptance — the work is not committed. This bound
 guarantees the loop terminates without ever self-exiting by accepting consequential work.

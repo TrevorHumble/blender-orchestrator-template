@@ -84,8 +84,8 @@ Every unit of work — add-on features, skill updates, agent changes, documentat
 ### Skills (`skills/`)
 - `issue-create.md` — draft and file issues
 - `spawn-adversarial-review.md` — spawn a reviewer with minimum context
-- `skill-writer.md` — write or update a skill through the PR pipeline
-- `agent-writer.md` — write or update an agent through the PR pipeline
+- `skill-writer.md` — write or update a skill through the review pipeline
+- `agent-writer.md` — write or update an agent through the review pipeline
 - `write-documentation.md` — write or update documentation
 - `update-claude-md.md` — update this file after issues and PRs
 - `github-write.md` — create branches, PRs, commits
@@ -100,9 +100,9 @@ Every unit of work — add-on features, skill updates, agent changes, documentat
 - `reviewer-issue.md`, `reviewer-pr.md`, `reviewer-skill.md`, `reviewer-agent.md`, `reviewer-documentation.md` — adversarial reviewers
 - `reviewer-architecture.md` — architectural gate; fires for issues that are a system-level change or adds a new component, and on every 5th counted BUILDLOG entry (committed-issue entries only; `[AUDIT]` entries excluded — see orchestrator.md)
 - `reviewer-design-philosophy.md` — design-philosophy gate; fires for every implementation artifact at PR-review time
-- `reviewer-doc-currency.md` — documentation-currency gate (agent exists; orchestrator wiring is a deferred follow-up, not yet live); judges a PR diff for currency-trigger violations (a file changed under a trigger without its matching front-door doc updated in the same diff)
+- `reviewer-doc-currency.md` — documentation-currency gate (agent exists; orchestrator wiring is a deferred follow-up, not yet live); judges a diff for currency-trigger violations (a file changed under a trigger without its matching front-door doc updated in the same diff)
 - `severity-adjudicator.md` — independent Opus agent that classifies remaining defects as consequential/inconsequential at the 3-round soft cap; sole authority to authorize exit
-- `reviewer-tracker-sync.md` — gate that FAILs a merge when the GitHub board is out of sync with the issue files / BUILDLOG (GitHub is the single source of truth)
+- `reviewer-tracker-sync.md` — gate that FAILs a commit when the GitHub board is out of sync with the issue files / BUILDLOG (GitHub is the single source of truth)
 - `researcher.md` — time-boxed prior-art research
 
 ---

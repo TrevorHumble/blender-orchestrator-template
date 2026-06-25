@@ -1,10 +1,10 @@
 ---
 name: github-write
 description: >-
-  How to create/update GitHub issues, commit changes, and open PRs in this
-  project using git and the GitHub CLI. Triggers: "create an issue", "open a PR",
-  "commit this", "push to GitHub", "close the issue", any task that writes to git
-  or GitHub for the blender-orchestrator project.
+  How to create/update GitHub issues and commit changes in this project using git
+  and the GitHub CLI (direct-push: the orchestrator commits to main, no pull requests).
+  Triggers: "create an issue", "commit this", "push to GitHub", "close the issue",
+  any task that writes to git or GitHub for this project.
 ---
 
 # github-write
@@ -27,10 +27,10 @@ equal — see DESIGN.md "Source of truth". The sync rule:
 
 - **On issue creation** → `gh issue create` (title `#NNNN <short title>`, label by tier: `ready` /
   `backlog` / `low priority`). The issue body can summarize and link the file.
-- **On PR merge / commit** → `gh issue close` the matching card, referencing the commit.
+- **On commit to `main`** → `gh issue close` the matching card, referencing the commit.
 - **On graduation/supersession** → update the card (re-label, or close with a pointer to the successor).
 - Never leave the board disagreeing with the issue files / BUILDLOG; `agents/reviewer-tracker-sync.md`
-  FAILs a merge that does.
+  FAILs a commit that does.
 
 ```powershell
 & "C:\Program Files\GitHub CLI\gh.exe" issue create `
