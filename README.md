@@ -1,6 +1,6 @@
 # Self-Enforcing Orchestrator — project template
 
-Clone this and you have a project where an AI orchestrator builds your software through an adversarial review pipeline **you don't have to police** — the enforcement is baked into the repo, not left to the agent's good behavior.
+Clone this and you have a project where an AI orchestrator builds your software through an adversarial review pipeline — AI reviewers whose job is to *find fault*, not rubber-stamp — **that you don't have to police**. The enforcement is baked into the repo, not left to the agent's good behavior.
 
 No human reads code in the critical path. Reviewer agents are the gate. Three hooks make the rules mechanical, not optional. You direct; the system builds and checks itself.
 
