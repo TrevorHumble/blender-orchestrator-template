@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "& \"$env:CLAUDE_PROJECT_DIR/.claude/hooks/goal-gate.ps1\"",
+            "shell": "powershell"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "& \"$env:CLAUDE_PROJECT_DIR/.claude/hooks/loop-gate.ps1\"",
+            "shell": "powershell"
+          }
+        ]
+      }
+    ]
+  }
+}
