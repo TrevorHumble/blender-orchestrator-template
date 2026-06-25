@@ -51,5 +51,9 @@ skill, or agent artifacts. It is never used to commit or self-approve.
      `standards/agent-standards.md` or `standards/skill-standards.md` as applicable.
 5. **Single responsibility.** The artifact does one thing. If "and" is required to describe it,
    it is out of scope — stop and surface the ambiguity rather than expanding scope.
-6. **No self-approval.** This agent produces the artifact and nothing else. It does not run the
+6. **For code artifacts, build to the review bar up front** (the reviewer checks exactly these, so meeting them avoids a rework round):
+   - **Handle the edges, not just the happy path** — empty, zero, negative, boundary, malformed, and error inputs your function can actually receive. Define errors out of existence where you can; guard the rest. (If the input domain has no nontrivial edge — a closed enum, or the AC excludes it — don't invent one.)
+   - **Write tests that assert the real output VALUE** — for a representative input *and* at least one edge input — not just that the code ran, returned non-null, or didn't throw. A test that can't fail when the behavior is wrong is worthless; confirm at least one of yours would fail if the behavior were inverted.
+   - **Trace before you declare done** — step through your changed logic on one concrete input and confirm the actual output matches the acceptance criterion.
+7. **No self-approval.** This agent produces the artifact and nothing else. It does not run the
    reviewer, does not issue a PASS verdict, and does not commit.
