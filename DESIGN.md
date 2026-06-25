@@ -3,7 +3,7 @@
 ## Prime directive
 
 <!-- CUSTOMIZE: state your domain here — what this project builds and who the product owner is. -->
-The product owner sets vision and tests outcomes. They do not necessarily write code. No human reads code in the critical path — the adversarial review agents are the code gate for all merges, so the owner is out of the code-review loop. They remain the final eye on the result and intent, and the director: their judgment gates the visible and qualitative outcomes a machine can't reliably judge.
+The product owner sets vision and tests outcomes. They do not necessarily write code. No human reads code in the critical path — the adversarial review agents are the code gate for everything that lands, so the owner is out of the code-review loop. They remain the final eye on the result and intent, and the director: their judgment gates the visible and qualitative outcomes a machine can't reliably judge.
 
 ## What the system is
 
@@ -186,7 +186,7 @@ and `standards/adversarial-review-protocol.md`). On a consequential defect, the 
 fix and re-review, then re-invoke the adjudicator. Genuinely inconsequential items are logged to
 `BUILDLOG.md` as follow-up issues. Impasse — a consequential defect that survives the severity
 gate plus 3 further fix-and-re-review rounds — halts the segment; independent segments continue.
-a halt is not an acceptance; the work is not merged.
+a halt is not an acceptance; the work is not committed.
 
 **Design lesson — no dead safety mechanism.** A loop-continuation gate must release on a condition the
 pipeline actually produces. An earlier design gated loop continuation on a verdict file that nothing in
@@ -277,7 +277,7 @@ measured or required. Documentation artifacts are exempt from tests.
 
 ### CLAUDE.md update triggers
 
-Update `CLAUDE.md` after every issue created and after every PR merged. The orchestrator loads CLAUDE.md at the start of each session; stale content degrades every subsequent decision.
+Update `CLAUDE.md` after every issue created and after every commit to `main`. The orchestrator loads CLAUDE.md at the start of each session; stale content degrades every subsequent decision.
 
 ### Documentation currency
 
@@ -383,7 +383,7 @@ committed standards and skills in this repo take over. PLAN.md holds the segment
 **GitHub is the single source of truth** for project state — every task is a GitHub issue, and its
 status (open/closed/labels) on the board is canonical. The board is **kept in sync by the pipeline**, not
 by anyone remembering to update it: the orchestrator opens a GitHub issue when an issue file is created
-and closes it when the PR merges, and `agents/reviewer-tracker-sync.md` FAILs any merge that leaves the
+and closes it on commit to `main`, and `agents/reviewer-tracker-sync.md` FAILs any commit that leaves the
 board disagreeing with reality. A single, always-current board is what the operator needs — not a log that
 some other record has to be reconciled against.
 
@@ -391,7 +391,7 @@ some other record has to be reconciled against.
 hold the full acceptance criteria and plan, are version-controlled and diffable, and are what the reviewer
 agents read. The matching GitHub issue owns the *status*. The discipline that prevents the drift that
 killed the old manual mirror: a file describes the work; the GitHub issue owns the state; the pipeline
-keeps them equal, and the sync gate enforces it. `BUILDLOG.md` remains the append-only history of merges;
+keeps them equal, and the sync gate enforces it. `BUILDLOG.md` remains the append-only history of commits;
 it is a log, not the task tracker.
 
 ## Where the documentation lives
