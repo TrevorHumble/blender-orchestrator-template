@@ -22,7 +22,7 @@ produced artifact — no semantic interpretation.
    string `<expected token>`.
 2. **Given** the file, **When** a reader greps it, **Then** it contains `<another literal or structural
    property>`.
-3. **Given** <a runtime condition>, **When** <the action runs>, **Then** <a measurable, recorded result>.
+3. **Given** the input `<example input>`, **When** `<the function/action>` runs, **Then** it produces the exact output `<expected output value>`. *(Keep at least one criterion in this input→output form — an issue whose criteria are all "file contains string" checks can't catch a wrong implementation.)*
 
 ## Implementation plan
 1. Create `<path/to/file>` with <the core deliverable named in criterion 1>.
