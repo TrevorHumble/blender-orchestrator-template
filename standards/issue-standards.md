@@ -12,7 +12,9 @@ Written from the end-consumer POV: the agent, human, or system that will use the
 
 ## Acceptance criteria
 
-Written as Given/When/Then criteria testable by an agent. Each criterion must be a literal string or structural check — present/absent phrase, section header, file path, token count — that a separate agent can verify by reading only the produced artifact, with no semantic interpretation required.
+Written as Given/When/Then criteria testable by an agent. Each criterion must be mechanically checkable with no semantic interpretation required — either a literal string or structural check (present/absent phrase, section header, file path, token count) verifiable by reading the produced artifact, or a behavioral input→output assertion (a concrete input and its exact expected output) verifiable by reading the recorded output of the artifact's own test.
+
+**A ready-tier issue's criteria must include at least one that asserts a behavioral output value** (input → expected output), so the criteria can catch a wrong implementation — an issue whose criteria are *all* presence/structural checks cannot, since a broken implementation can satisfy every "file contains X" check. **Documentation-only issues** (those whose `Touches` paths are all docs — `.md` or under `docs/`) are exempt and may use purely string/structural criteria. (Backlog-tier issues capture intent before implementation and need only one deterministic criterion — see Issue tiers.)
 
 For a documentation issue, acceptance criteria must reduce to literal string or structural checks (no criterion of the form "an agent can understand X" — that is unfalsifiable). Lesson from issue #0001: every AC that said "an agent can answer X" was unfalsifiable; rewrite as "the file contains the phrase `X`".
 
@@ -74,7 +76,8 @@ A backlog issue is never implemented in place. When its `Graduate after` conditi
 ### Ready-tier checklist
 
 - [ ] PASS/FAIL — User story names an end-consumer (not the author) and follows `As a [consumer], I need…` form.
-- [ ] PASS/FAIL — Every acceptance criterion is in Given/When/Then form and resolves to a literal string or structural check.
+- [ ] PASS/FAIL — Every acceptance criterion is in Given/When/Then form and resolves to a literal string/structural check or a behavioral input→output assertion.
+- [ ] PASS/FAIL — At least one acceptance criterion asserts a behavioral output value (input → expected output), not only presence/structural checks — except documentation-only issues (`Touches` all docs). An all-presence-check issue a wrong implementation could pass is a FAIL.
 - [ ] PASS/FAIL — Implementation plan is present and contains at least three numbered steps, each naming a file path or a concrete deliverable.
 - [ ] PASS/FAIL — Dependency map contains all three fields: `Depends on`, `Blocks`, `Touches`.
 - [ ] PASS/FAIL — No FINAL, LAST, or TRULY_FINAL in filenames or section headers referenced by this issue.

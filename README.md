@@ -78,7 +78,7 @@ powershell -File tools/stop-run.ps1                  # emergency brake (or creat
 | `standards/` | Authoring + review standards (adversarial protocol, design-philosophy, …) |
 | `.githooks/` | The commit gate (`pre-commit`) |
 | `.claude/` | Hooks (goal gate, loop gate), settings, the `/build` command |
-| `tools/` | `setup-hooks`, `check-gate`, `review_verdict`, `start-run`, `stop-run` |
+| `setup.ps1` · `tools/` | one-time setup (root `setup.ps1`); `check-enforcement`, `setup-hooks`, `check-gate`, `review_verdict`, `start-run`, `stop-run` |
 | `tests/` · `evals/` | Dependency-free test + eval harness (with the example add-ons) |
 | `.github/workflows/` | CI (`ci.yml`) + CodeQL (`codeql.yml`) |
 | `DESIGN.md` · `PLAN.md` · `BUILDLOG.md` | Design rationale · build plan · running log |

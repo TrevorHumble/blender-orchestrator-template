@@ -9,9 +9,9 @@ The product owner sets vision and tests outcomes. They do not necessarily write 
 
 A Claude Code orchestrator agent that builds the software this project targets and maintains itself. All work — including updates to the skills and agents that run it — flows through one pipeline:
 
-`issue → review → implement → PR → review → commit`
+`issue → review → implement → review → commit`
 
-The system is self-maintaining: when a skill, agent, or standard needs to change, that change is issued, reviewed, implemented, and merged through the same pipeline as any product feature.
+This is a direct-push model: the orchestrator is the sole committer; on PASS it records the verdict and commits straight to `main`. There is no pull request and no merge step. The system is self-maintaining: when a skill, agent, or standard needs to change, that change is issued, reviewed, implemented, and committed through the same pipeline as any product feature.
 
 ## Core principles
 
@@ -25,7 +25,7 @@ The system is self-maintaining: when a skill, agent, or standard needs to change
 
 **Skill-bloat guard.** When updating a skill, apply the author's intent rather than transcribing the user's words. See the Skill-bloat problem section.
 
-**Living-repo-same-pipeline.** Skills and agents are never patched in place without review. Every change — including changes to this system itself — goes through `issue → review → implement → PR → review → commit`.
+**Living-repo-same-pipeline.** Skills and agents are never patched in place without review. Every change — including changes to this system itself — goes through `issue → review → implement → review → commit` (direct-push: sole committer, no PR/merge).
 
 ## Repo structure
 
@@ -96,8 +96,8 @@ A full-system architectural audit runs on every 5th counted BUILDLOG entry (comm
 ### Process flows
 
 - **Issue creation + review loop:** orchestrator drafts issue → `spawn-adversarial-review` sends it to reviewer-issue → PASS creates the issue; FAIL triggers revision and a fresh reviewer.
-- **PR creation + review loop:** implementation agent builds the implementation → pushes PR → `spawn-adversarial-review` sends the diff to reviewer-pr → PASS merges; FAIL triggers revision and a fresh reviewer.
-- **Skill/agent update loop:** changes to skills or agents enter the same `issue → review → implement → PR → review → commit` pipeline, using reviewer-skill and reviewer-agent respectively.
+- **Implementation + review loop:** implementation agent builds the diff (no PR) → `spawn-adversarial-review` sends the diff to reviewer-pr → on PASS the orchestrator records the verdict via `tools/review_verdict.ps1`, commits directly to `main`, and watches CI to green; FAIL triggers revision and a fresh reviewer.
+- **Skill/agent update loop:** changes to skills or agents enter the same `issue → review → implement → review → commit` pipeline (direct-push), using reviewer-skill and reviewer-agent respectively.
 
 ## Adversarial review protocol
 
@@ -154,14 +154,16 @@ The reviewer returns PASS/FAIL followed by a numbered list of specific defects. 
 8. On PASS, create the issue via `github-write`.
 9. Update `CLAUDE.md` to reflect the new issue.
 
-### PR lifecycle
+### Implementation lifecycle
 
-1. The Sonnet implementation agent builds toward the passing issue, consulting `blender-rag` for any bpy code.
-2. Push the branch and open a PR via `github-write`.
-3. Hand the raw diff to reviewer-pr with no framing.
-4. Reviewer checks: correctness, tests that assert real output values (not just counts) and trace to acceptance criteria, that the mutation/tamper gate still catches deliberately-broken code, lint/format, comment quality, naming, and architectural fit.
-5. On FAIL, fix the implementation and re-submit to a fresh reviewer (the Ralph loop). Repeat until PASS.
-6. On PASS, merge the PR.
+This is a direct-push model: the orchestrator is the sole committer; there is no pull request and no merge step.
+
+1. The Sonnet implementation agent builds toward the passing issue, consulting `blender-rag` for any bpy code. It produces the diff only — no PR.
+2. Hand the raw diff to reviewer-pr with no framing.
+3. Reviewer checks: correctness, tests that assert real output values (not just counts) and trace to acceptance criteria, that the mutation/tamper gate still catches deliberately-broken code, lint/format, comment quality, naming, and architectural fit.
+4. On FAIL, fix the implementation and re-submit to a fresh reviewer (the Ralph loop). Repeat until PASS.
+5. The design-philosophy gate (reviewer-design-philosophy) fires after reviewer-pr returns PASS.
+6. On PASS, record the verdict via `tools/review_verdict.ps1` (binds it to the exact staged tree), then commit directly to `main` and watch CI to green before moving on — `main` is never knowingly left red. There is no branch protection by design; the post-commit CI-watch is the operative enforcement.
 7. Update `CLAUDE.md` and the README if public-facing behavior changed.
 
 ### Skill/agent-update lifecycle
@@ -240,7 +242,7 @@ Each issue begins with an end-consumer user story written from the perspective o
 
 ### Acceptance criteria
 
-Criteria are Given/When/Then criteria testable by an agent — literal, mechanically checkable properties of the artifact. Semantic interpretation is not required. If a criterion cannot be checked by string match or structural inspection, rewrite it until it can.
+Criteria are Given/When/Then criteria testable by an agent — literal, mechanically checkable properties of the artifact. Semantic interpretation is not required. At least one criterion must assert a behavioral output value (a concrete input → expected output) so the criteria can catch a wrong implementation, not just a missing file or string (documentation-only issues are exempt). A behavioral input→output criterion is checked by reading the produced artifact or the output of the artifact's own test — both are mechanical, not semantic. If a criterion cannot be checked that way (by string match, structural inspection, or a concrete input→output assertion), rewrite it until it can; no vague or semantic criteria.
 
 ### Implementation plan
 
